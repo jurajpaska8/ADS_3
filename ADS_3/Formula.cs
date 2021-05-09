@@ -9,6 +9,11 @@ namespace ADS_3
     class Formula
     {
         public List<Clause> Clauses;
+
+        public int VerticesCount { get; set; } = 0;
+
+        public int ClausesCount { get; set; } = 0;
+
         public Formula()
         {
             Clauses = new List<Clause>();
@@ -18,7 +23,11 @@ namespace ADS_3
         {
             string[] lines = System.IO.File.ReadAllLines(path);
 
-            for(int i = 1; i < lines.Length; i++)
+            VerticesCount = Int32.Parse(lines[0].Split(" ")[0]);
+
+            ClausesCount = Int32.Parse(lines[0].Split(" ")[1]);
+
+            for (int i = 1; i < lines.Length; i++)
             {
                 string[] numbers = lines[i].Split(" ");
                 Clauses.Add(new Clause(numbers[0], numbers[1]));
@@ -72,7 +81,7 @@ namespace ADS_3
         public bool IsSatisfied()
         {
             var res = Clauses.Where(c => !c.IsFullfilled());
-            if (res.Count() > 0) return false;
+            if (res.Any()) return false;
             {
                 return true;
             }

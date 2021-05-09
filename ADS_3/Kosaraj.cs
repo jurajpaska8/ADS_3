@@ -86,10 +86,27 @@ namespace ADS_3
             foreach (string v in pureVertices)
             {
                 if (comp[v] == comp[$"-{v}"])
+                {
+                    Console.Out.WriteLine("NESPLNITELNA");
                     return false;
+                }
                 assigment[v] = comp[v] > comp[$"-{v}"];
             }
 
+            Console.Out.WriteLine("SPLNITELNA");
+            foreach (var kp in assigment)
+            {
+                if (kp.Value)
+                {
+                    Console.Out.WriteLine($"{kp.Key} : PRAVDA");
+                }
+                else
+                {
+                    Console.Out.WriteLine($"{kp.Key} : NEPRAVDA");
+                }
+
+
+            }
             return true;
         }
 
